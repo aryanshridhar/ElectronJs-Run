@@ -8,13 +8,13 @@ function createWindow () {
       nodeIntegration: true,
     },
     resizable : false,
-    fullscreen : false
+    fullscreen : false,
   })
 
   win.loadFile('./screen/index.html')
 
 
-  win.webContents.openDevTools()
+  // win.webContents.openDevTools()
 }
 
 app.whenReady().then(createWindow)
