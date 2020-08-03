@@ -1,8 +1,4 @@
 
-var DEBRIS = []
-var TOTAL_DEBRIS = 15
-
-
 class mainscreen extends Phaser.Scene{
     constructor(){
         super({key : "mainscreen"});
@@ -22,6 +18,7 @@ class mainscreen extends Phaser.Scene{
         this.i = 0;
         this.k = 0;
         this.threshold = 0
+        this.DEBRIS = []
 
         this.physics.world.setBoundsCollision();
 
@@ -32,7 +29,7 @@ class mainscreen extends Phaser.Scene{
 
         this.bg = this.add.tileSprite(0,0,WIDTH,HEIGHT,'background');
         this.rock1 = this.physics.add.sprite(Phaser.Math.Between(0, WIDTH),-30,Phaser.Math.RND.pick(['rock1' , 'rock2']));
-        DEBRIS.push(this.rock1);
+        this.DEBRIS.push(this.rock1);
         this.score = this.add.text(10,10, 'Points : ' + this.points).setColor('White').setFontSize(22).setFontFamily('Impact');
         this.ship = this.physics.add.sprite(WIDTH/2,HEIGHT-100,'ship');
         
@@ -53,7 +50,7 @@ class mainscreen extends Phaser.Scene{
         this.ship.setInteractive();
         this.ship.setCollideWorldBounds = true;
 
-        this.physics.add.collider(this.ship, DEBRIS, () => {
+        this.physics.add.collider(this.ship, this.DEBRIS, () => {
             
             
             this.explosion = this.add.sprite(this.ship.x,this.ship.y,'explosion');
@@ -64,16 +61,28 @@ class mainscreen extends Phaser.Scene{
                 targets: this.explosion,
                 alpha: '+=1',             
                 ease : 'Linear',       
-                duration: 1000,
+                duration: 700,
                 onComplete : () => {
                     this.explosion.destroy();
                     this.rock1.destroy();
+                    if(Math.round(this.points) > store.get('score') && store.get('score') != undefined){
+                        this.scene.start('endscreen' , {'score' : this.points , 'replace' : true})
+                    }
+                    else{
+                        this.scene.start('endscreen' , {'score' : this.points , 'replace' : false})
+                    }
+
+                    let existing = store.get('allscore');
+                    existing.push(Math.round(this.points));
+                    
+                    store.set('allscore',existing);
                 },
                 repeat: 0,            
                 yoyo: false
             },this);
 
-            this.scene.start('endscreen' , {'score' : this.points})
+
+            
 
         })
 
@@ -81,25 +90,24 @@ class mainscreen extends Phaser.Scene{
 
     update(){
 
-
-        for(let j=0;j<DEBRIS.length;j++){
-            DEBRIS[j].y += this.rockvelocity;
+        for(let j=0;j<this.DEBRIS.length;j++){
+            this.DEBRIS[j].y += this.rockvelocity;
         }
 
         this.bg.tilePositionY -= this.movescreen;
         this.score.setText('Points : ' + Math.round(this.points));
 
-        if(DEBRIS[this.i].y > WIDTH/4-this.threshold){
+        if(this.DEBRIS[this.i].y > WIDTH/4-this.threshold){
             this.newrock = this.physics.add.sprite(Phaser.Math.Between(0, WIDTH),-30,Phaser.Math.RND.pick(['rock1' , 'rock2']));
             this.createrock(this.newrock)
-            DEBRIS.push(this.newrock);
+            this.DEBRIS.push(this.newrock);
             this.i++;
         }
 
-        if(DEBRIS[this.k].y > HEIGHT){
+        if(this.DEBRIS[this.k].y > HEIGHT){
             
-            DEBRIS[this.k].destroy();
-            DEBRIS.shift();
+            this.DEBRIS[this.k].destroy();
+            this.DEBRIS.shift();
             this.k++;
             this.i--;
         }

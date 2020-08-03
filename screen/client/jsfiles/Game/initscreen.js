@@ -10,8 +10,18 @@ class initscreen extends Phaser.Scene{
 
     create(){
 
+        store.set('allscore' , []);
+
+        if(store.get('score') === undefined){
+            this.highscore = 0;
+        }
+        else{
+            this.highscore = store.get('score');
+        }
+
         let bg = this.add.image(0,0,'startbg');
         this.start = this.add.sprite (WIDTH/2,-100,'start').setInteractive();
+        this.highscore = this.add.text(WIDTH-150 , 10 , 'Highscore : ' + this.highscore);
         this.text = this.add.text(-200,100, 'Run !').setColor('White').setFontSize(64).setFontStyle('bold italic').setFontFamily('Open Sans');
 
         let spritetween = this.tweens.add({
