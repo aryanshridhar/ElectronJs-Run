@@ -9,6 +9,7 @@ class initscreen extends Phaser.Scene{
     }
 
     create(){
+
         let bg = this.add.image(0,0,'startbg');
         this.start = this.add.sprite (WIDTH/2,-100,'start').setInteractive();
         this.text = this.add.text(-200,100, 'Run !').setColor('White').setFontSize(64).setFontStyle('bold italic').setFontFamily('Open Sans');

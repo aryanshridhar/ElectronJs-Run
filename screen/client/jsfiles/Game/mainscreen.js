@@ -12,6 +12,7 @@ class mainscreen extends Phaser.Scene{
         this.load.image('background' , './assets/image3.jpg');
         this.load.image('ship' , './assets/ship.png');
         this.load.image('rock1' , './assets/rock1.png');
+        this.load.image('rock2' , './assets/rock2.png');
         this.load.image('explosion' , './assets/explosion.png');
 
     }
@@ -20,6 +21,7 @@ class mainscreen extends Phaser.Scene{
 
         this.i = 0;
         this.k = 0;
+        this.threshold = 0
 
         this.physics.world.setBoundsCollision();
 
@@ -29,7 +31,7 @@ class mainscreen extends Phaser.Scene{
         this.points = 0;
 
         this.bg = this.add.tileSprite(0,0,WIDTH,HEIGHT,'background');
-        this.rock1 = this.physics.add.sprite(Phaser.Math.Between(0, WIDTH),-30,'rock1');
+        this.rock1 = this.physics.add.sprite(Phaser.Math.Between(0, WIDTH),-30,Phaser.Math.RND.pick(['rock1' , 'rock2']));
         DEBRIS.push(this.rock1);
         this.score = this.add.text(10,10, 'Points : ' + this.points).setColor('White').setFontSize(22).setFontFamily('Impact');
         this.ship = this.physics.add.sprite(WIDTH/2,HEIGHT-100,'ship');
@@ -46,9 +48,7 @@ class mainscreen extends Phaser.Scene{
         this.key_D = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
 
         this.createrock(this.rock1)
-
         
-
         this.ship.setScale(0.2);
         this.ship.setInteractive();
         this.ship.setCollideWorldBounds = true;
@@ -73,6 +73,7 @@ class mainscreen extends Phaser.Scene{
                 yoyo: false
             },this);
 
+            this.scene.start('endscreen' , {'score' : this.points})
 
         })
 
@@ -88,8 +89,8 @@ class mainscreen extends Phaser.Scene{
         this.bg.tilePositionY -= this.movescreen;
         this.score.setText('Points : ' + Math.round(this.points));
 
-        if(DEBRIS[this.i].y > WIDTH/4){
-            this.newrock = this.physics.add.sprite(Phaser.Math.Between(0, WIDTH),-30,'rock1');
+        if(DEBRIS[this.i].y > WIDTH/4-this.threshold){
+            this.newrock = this.physics.add.sprite(Phaser.Math.Between(0, WIDTH),-30,Phaser.Math.RND.pick(['rock1' , 'rock2']));
             this.createrock(this.newrock)
             DEBRIS.push(this.newrock);
             this.i++;
@@ -133,13 +134,27 @@ class mainscreen extends Phaser.Scene{
         this.rockvelocity += 0.004;
         this.points += 1/60
         this.velocity += 0.0005;
+        this.threshold -= 0.0005;
     }
+
+    genrandom = (min,max) => {
+        let num = Math.random() * (max - min) + min;
+        return num;
+    };
 
     createrock = (rock) => {
-        rock.setScale(0.02);
-        rock.setCollideWorldBounds = true;
-        rock.setInteractive();
-    }
-}
 
+        if(rock.texture.key === 'rock2'){
+            rock.setScale(this.genrandom(0.03,0.05));
+            rock.setCollideWorldBounds = true;
+            rock.setInteractive();
+        }
+        else{
+            rock.setScale(this.genrandom(0.015,0.025));
+            rock.setCollideWorldBounds = true;
+            rock.setInteractive();
+        }
+    }
+
+}
 

@@ -4,7 +4,7 @@ var HEIGHT = 650;
 var config = {
     width: WIDTH,
     height: HEIGHT,
-    scene: [initscreen,mainscreen],
+    scene: [initscreen,mainscreen,endscreen],
     pixelArt: true,
     physics: {
       debug: true,
