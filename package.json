@@ -1,24 +1,30 @@
 {
-  "name": "electronjs-run",
+  "name": "run",
   "version": "1.0.0",
   "description": "Implementing classic space run in electron",
   "main": "src/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron ."
+    "start": "electron .",
+    "dist:linux" : "electron-builder --linux"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/aryanshridhar/ElectronJs-Run.git"
   },
-  "author": "aryanshridhar",
+  "author": {
+    "name": "Aryan Shridhar",
+    "email": "aryanshridhar7@gmail.com",
+    "url": "https://github.com/aryanshridhar"
+  },
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/aryanshridhar/ElectronJs-Run/issues"
   },
   "homepage": "https://github.com/aryanshridhar/ElectronJs-Run#readme",
   "devDependencies": {
-    "electron": "^9.1.2"
+    "electron": "^9.1.2",
+    "electron-builder": "^22.8.0"
   },
   "dependencies": {
     "electron-store": "^6.0.0"
