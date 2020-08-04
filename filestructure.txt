@@ -1,0 +1,42 @@
+.
+├── build
+│   └── icons
+│       ├── icon.ico
+│       └── icon.png
+├── filestructure.txt
+├── package.json
+├── package-lock.json
+├── README.md
+├── screen
+│   ├── assets
+│   │   ├── background.jpg
+│   │   ├── explosion.png
+│   │   ├── gameback.jpg
+│   │   ├── initbg.jpg
+│   │   ├── restart.png
+│   │   ├── rock1.png
+│   │   ├── rock2.png
+│   │   ├── ship.png
+│   │   └── start.png
+│   ├── client
+│   │   ├── cssfiles
+│   │   │   └── style.css
+│   │   └── jsfiles
+│   │       ├── Game
+│   │       │   ├── config.js
+│   │       │   ├── endscreen.js
+│   │       │   ├── highscore.js
+│   │       │   ├── initscreen.js
+│   │       │   ├── mainscreen.js
+│   │       │   └── newconfig.js
+│   │       └── static
+│   │           ├── newrenderer.js
+│   │           ├── phaser.min.js
+│   │           ├── renderer.js
+│   │           └── try.js
+│   ├── highscore.html
+│   └── index.html
+└── src
+    └── main.js
+
+10 directories, 29 files
