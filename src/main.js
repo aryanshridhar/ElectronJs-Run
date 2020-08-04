@@ -23,7 +23,7 @@ function createWindow () {
 
   win.once('ready-to-show', () => {
     win.show()
-  })  
+  }) 
 
   let mainmenu = new Menu();
   let item1 = new MenuItem({

@@ -8,7 +8,7 @@ class highscore extends Phaser.Scene{
     }
     
     preload(){
-        this.load.image('endbg' ,'./assets/initbg.jpg');
+        this.load.image('endbg' ,'./assets/background.jpg');
     }
 
     init(){

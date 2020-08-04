@@ -5,7 +5,7 @@ class mainscreen extends Phaser.Scene{
     }
 
     preload(){
-        this.load.image('background' , './assets/image3.jpg');
+        this.load.image('background' , './assets/gameback.jpg');
         this.load.image('ship' , './assets/ship.png');
         this.load.image('rock1' , './assets/rock1.png');
         this.load.image('rock2' , './assets/rock2.png');
