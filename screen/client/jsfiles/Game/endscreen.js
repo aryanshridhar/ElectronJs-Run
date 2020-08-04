@@ -9,8 +9,10 @@ class endscreen extends Phaser.Scene{
 
     init(obj){
         this.points = Math.round(obj.score);
-        store.set('score' , this.points);
-        console.log(store.get('allscore'));
+        if (this.points > store.get('score')){
+            store.set("score" , this.points);
+        }
+
     }
 
     
@@ -23,7 +25,7 @@ class endscreen extends Phaser.Scene{
 
         let bg = this.add.image(0,0,'endbg');
         this.reset = this.add.sprite(WIDTH/2,-100,'restart').setInteractive();
-        this.text = this.add.text(-200,100, 'Score: ' + this.points).setColor('White').setFontStyle('bold italic').setFontSize(55).setFontFamily('Open Sans');
+        this.text = this.add.text(-300,100, 'Score: ' + this.points).setColor('White').setFontStyle('bold italic').setFontSize(55).setFontFamily('Open Sans');
         
         let spritetween = this.tweens.add({
             targets : this.reset,
@@ -37,7 +39,7 @@ class endscreen extends Phaser.Scene{
         
         let texttween = this.tweens.add({
             targets : this.text,
-            x : WIDTH/2-80,
+            x : WIDTH/2-90,
             y : 100,
             duration : 1300,
             ease : "Elastic",

@@ -3,6 +3,12 @@ class initscreen extends Phaser.Scene{
         super({key : "initscreen"});
     }
 
+    init(){
+        if(store.get('score') === undefined || store.get('score') === null){
+            store.set('score',0);
+        }
+    }
+
     preload(){
         this.load.image('startbg' ,'./assets/initbg.jpg');
         this.load.image('start' ,'./assets/start.png');
@@ -11,13 +17,7 @@ class initscreen extends Phaser.Scene{
     create(){
 
         store.set('allscore' , []);
-
-        if(store.get('score') === undefined){
-            this.highscore = 0;
-        }
-        else{
-            this.highscore = store.get('score');
-        }
+        this.highscore = store.get('score');
 
         let bg = this.add.image(0,0,'startbg');
         this.start = this.add.sprite (WIDTH/2,-100,'start').setInteractive();

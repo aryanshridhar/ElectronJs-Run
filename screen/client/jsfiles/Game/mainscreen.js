@@ -49,6 +49,10 @@ class mainscreen extends Phaser.Scene{
         this.ship.setScale(0.2);
         this.ship.setInteractive();
         this.ship.setCollideWorldBounds = true;
+        // this.ship.setSize(255,320)
+        // this.ship.setOffset(100,50)
+
+        this.ship.setCircle(140,100,60)
 
         this.physics.add.collider(this.ship, this.DEBRIS, () => {
             
@@ -65,13 +69,7 @@ class mainscreen extends Phaser.Scene{
                 onComplete : () => {
                     this.explosion.destroy();
                     this.rock1.destroy();
-                    if(Math.round(this.points) > store.get('score') && store.get('score') != undefined){
-                        this.scene.start('endscreen' , {'score' : this.points , 'replace' : true})
-                    }
-                    else{
-                        this.scene.start('endscreen' , {'score' : this.points , 'replace' : false})
-                    }
-
+                    this.scene.start('endscreen',{'score' : this.points})
                     let existing = store.get('allscore');
                     existing.push(Math.round(this.points));
                     
@@ -79,10 +77,7 @@ class mainscreen extends Phaser.Scene{
                 },
                 repeat: 0,            
                 yoyo: false
-            },this);
-
-
-            
+            },this);    
 
         })
 

@@ -21,7 +21,9 @@ function createWindow () {
 
   win.loadFile('./screen/index.html');
 
-  win.webContents.openDevTools()
+  win.once('ready-to-show', () => {
+    win.show()
+  })  
 
   let mainmenu = new Menu();
   let item1 = new MenuItem({
@@ -58,6 +60,10 @@ function createWindow () {
       })
 
       displaywin.loadFile('./screen/highscore.html');
+
+      displaywin.once('ready-to-show', () => {
+        displaywin.show()
+      })  
     }
   })
 

@@ -1,10 +1,10 @@
-var WIDTH = 500;
-var HEIGHT = 650;
+var WIDTH = 400;
+var HEIGHT = 400;
 
 var config = {
     width: WIDTH,
     height: HEIGHT,
-    scene: [initscreen,mainscreen,endscreen],
+    scene: [highscore],
     pixelArt: true,
     physics: {
       default: "arcade",
