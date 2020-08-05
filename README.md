@@ -1,5 +1,5 @@
 # ElectronJs-Run
-Implementing a game never-ending in Electron.js
+Implementing a never-ending game in Electron.js
 
 #### Preview : 
 
