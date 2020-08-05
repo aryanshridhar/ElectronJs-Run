@@ -3,10 +3,10 @@ const { app,
   Tray,
   Menu,
   MenuItem,
-  webContents
 } = require('electron')
 
 let tray;
+var displaywin;
 
 function createWindow () {
   const win = new BrowserWindow({
@@ -48,22 +48,28 @@ function createWindow () {
   let item2 = new MenuItem({
     label : "Scores",
     click : () => {
-      const displaywin = new BrowserWindow({
-        width: 400,
-        height: 400,
-        webPreferences: {
-          nodeIntegration: true,
-        },
-        resizable : false,
-        fullscreen : false,
-        parent : win,
-      })
+        if(displaywin === undefined){
+          displaywin = new BrowserWindow({
+          width: 400,
+          height: 400,
+          webPreferences: {
+            nodeIntegration: true,
+          },
+          resizable : false,
+          fullscreen : false,
+          parent : win,
+        })
 
-      displaywin.loadFile('./screen/highscore.html');
+        displaywin.loadFile('./screen/highscore.html');
 
-      displaywin.once('ready-to-show', () => {
-        displaywin.show()
-      })  
+        displaywin.once('ready-to-show', () => {
+          displaywin.show()
+        })
+
+        displaywin.on("close" , () => {
+          displaywin = undefined;
+        })
+      }  
     }
   })
 

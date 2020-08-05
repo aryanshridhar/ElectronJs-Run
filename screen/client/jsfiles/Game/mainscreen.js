@@ -43,6 +43,12 @@ class mainscreen extends Phaser.Scene{
         this.key_A = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
         this.key_S = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
         this.key_D = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
+        this.key_UP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
+        this.key_LEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
+        this.key_DOWN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
+        this.key_RIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
+
+        console.log(Phaser.Input.Keyboard.KeyCodes);
 
         this.createrock(this.rock1)
         
@@ -107,25 +113,25 @@ class mainscreen extends Phaser.Scene{
             this.i--;
         }
 
-        if(this.key_W.isDown){
+        if(this.key_W.isDown || this.key_UP.isDown){
             this.ship.y -= this.velocity;
             if(this.ship.y - this.ship.displayHeight/2 < 0){
                 this.ship.y = this.ship.displayHeight/2;
             }
         }
-        if(this.key_A.isDown){
+        if(this.key_A.isDown || this.key_LEFT.isDown){
             this.ship.x -= this.velocity;
             if(this.ship.x - this.ship.displayWidth/2 + 20 < 0){
                 this.ship.x = this.ship.displayWidth/2 -20;
             }
         }
-        if(this.key_S.isDown){
+        if(this.key_S.isDown || this.key_DOWN.isDown){
             this.ship.y += this.velocity;
             if(this.ship.y+this.ship.displayHeight/2 + 10  >= HEIGHT){
                 this.ship.y = HEIGHT-this.ship.displayHeight/2 - 10;
             }
         }
-        if(this.key_D.isDown){
+        if(this.key_D.isDown || this.key_RIGHT.isDown){
             this.ship.x += this.velocity;
             if(this.ship.x + this.ship.displayWidth/2 - 25  >= WIDTH){
                 this.ship.x = WIDTH -this.ship.displayWidth/2 + 25;
