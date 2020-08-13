@@ -32,6 +32,10 @@ Issues and pull requests are always appreciated !
 </ul>
 <br>
 
+#### Download : 
+
+<b><a href = 'https://github.com/aryanshridhar/ElectronJs-Run/releases/download/v1.0.0/run_1.0.0_amd64.deb'>.deb</a></b><br/>
+<b><a href = 'https://github.com/aryanshridhar/ElectronJs-Run/releases/download/v1.0.0/run-1.0.0.tar.xz'>.tar.xz</a></b>
 
 
 #### Dependencies Used : 
