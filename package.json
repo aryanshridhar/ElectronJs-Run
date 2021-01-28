@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/aryanshridhar/ElectronJs-Run#readme",
   "devDependencies": {
-    "electron": "^9.1.2",
+    "electron": "^9.4.0",
     "electron-builder": "^22.8.0"
   },
   "dependencies": {
